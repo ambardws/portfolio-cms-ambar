@@ -43,6 +43,28 @@
 - [x] Created routes (contact.ts)
 - [x] Created services (contact.ts)
 
+### 5. Overview Collection (Single Type) - DONE
+- [x] Created schema.json with all required fields
+  - sectionTitle (Text) - Default: "INTRODUCTION"
+  - heading (Text) - Default: "Overview"
+  - description (Rich Text)
+  - highlightedText (Text)
+- [x] Created controller (overview.ts)
+- [x] Created routes (overview.ts)
+- [x] Created services (overview.ts)
+
+### 6. Services Collection (Collection Type) - DONE
+- [x] Created schema.json with all required fields
+  - title (Text) - Required
+  - description (Text)
+  - icon (Text) - For icon name or emoji
+  - iconImage (Media - Single) - Alternative to icon text
+  - order (Number) - For display order (1, 2, 3, 4)
+  - featured (Boolean) - To highlight specific services
+- [x] Created controller (service.ts)
+- [x] Created routes (service.ts)
+- [x] Created services (service.ts)
+
 ## 📋 Next Steps
 
 ### 1. Restart Strapi Development Server
@@ -57,6 +79,8 @@ After restarting, check the Strapi admin panel at `http://localhost:1337/admin` 
 - Projects Collection appears as a Collection Type
 - About Collection appears as a Single Type
 - Contact Collection appears as a Single Type
+- Overview Collection appears as a Single Type
+- Services Collection appears as a Collection Type
 
 ### 3. Configure Permissions (Optional)
 In the Strapi admin panel, go to Settings > Users & Permissions > Roles to configure:
@@ -70,6 +94,9 @@ Once the server is running, test the following endpoints:
 - GET `/api/projects/:id` - Get single project
 - GET `/api/about` - Get about data
 - GET `/api/contact` - Get contact data
+- GET `/api/overview` - Get overview/introduction data
+- GET `/api/services` - Get all services
+- GET `/api/services/:id` - Get single service
 
 ## 📝 Notes
 
@@ -98,8 +125,31 @@ src/api/
 │   ├── controllers/about.ts
 │   ├── routes/about.ts
 │   └── services/about.ts
-└── contact/ (Single Type)
-    ├── content-types/contact/schema.json
-    ├── controllers/contact.ts
-    ├── routes/contact.ts
-    └── services/contact.ts
+├── contact/ (Single Type)
+│   ├── content-types/contact/schema.json
+│   ├── controllers/contact.ts
+│   ├── routes/contact.ts
+│   └── services/contact.ts
+├── overview/ (Single Type)
+│   ├── content-types/overview/schema.json
+│   ├── controllers/overview.ts
+│   ├── routes/overview.ts
+│   └── services/overview.ts
+└── service/ (Collection Type)
+    ├── content-types/service/schema.json
+    ├── controllers/service.ts
+    ├── routes/service.ts
+    └── services/service.ts
+```
+
+## 📊 Collections Summary
+
+### Single Types (4):
+1. **Profile Collection** - Portfolio profile information
+2. **About** - About page content with skills and experience
+3. **Contact** - Contact information and social links
+4. **Overview** - Introduction section with highlighted text
+
+### Collection Types (2):
+1. **Projects** - Portfolio projects with technologies and links
+2. **Services** - Services offered with icons and ordering
