@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "profile_collections",
+  "info": {
+    "singularName": "profile-collection",
+    "pluralName": "profile-collections",
+    "displayName": "Profile"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "profileImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "ctaButtonText": {
+      "type": "string"
+    }
+  }
+}
