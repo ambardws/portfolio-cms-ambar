@@ -576,6 +576,7 @@ export interface ApiProjectProject extends Struct.CollectionTypeSchema {
       'api::project.project'
     > &
       Schema.Attribute.Private;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
     technologies: Schema.Attribute.JSON;
     thumbnail: Schema.Attribute.Media<'images'>;
@@ -613,6 +614,86 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<1>;
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiTechStackTechStack extends Struct.CollectionTypeSchema {
+  collectionName: 'tech_stacks';
+  info: {
+    displayName: 'Tech Stack';
+    pluralName: 'tech-stacks';
+    singularName: 'tech-stack';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Schema.Attribute.Enumeration<
+      ['frontend', 'backend', 'tools', 'design', 'database', 'devops']
+    > &
+      Schema.Attribute.DefaultTo<'frontend'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    icon: Schema.Attribute.Media<'images'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::tech-stack.tech-stack'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    proficiencyLevel: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 100;
+          min: 1;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<50>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiWorkExperienceWorkExperience
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'work_experiences';
+  info: {
+    displayName: 'Work Experience';
+    pluralName: 'work-experiences';
+    singularName: 'work-experience';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    companyLogo: Schema.Attribute.Media<'images'>;
+    companyName: Schema.Attribute.String & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descriptions: Schema.Attribute.JSON;
+    endDate: Schema.Attribute.Date;
+    isCurrentJob: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    jobTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::work-experience.work-experience'
+    > &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    startDate: Schema.Attribute.Date & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1135,6 +1216,8 @@ declare module '@strapi/strapi' {
       'api::profile-collection.profile-collection': ApiProfileCollectionProfileCollection;
       'api::project.project': ApiProjectProject;
       'api::service.service': ApiServiceService;
+      'api::tech-stack.tech-stack': ApiTechStackTechStack;
+      'api::work-experience.work-experience': ApiWorkExperienceWorkExperience;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
