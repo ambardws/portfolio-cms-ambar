@@ -150,6 +150,51 @@ src/api/
 3. **Contact** - Contact information and social links
 4. **Overview** - Introduction section with highlighted text
 
-### Collection Types (2):
+### Collection Types (3):
 1. **Projects** - Portfolio projects with technologies and links
 2. **Services** - Services offered with icons and ordering
+3. **Work Experience** - Work history with job details and descriptions
+
+---
+
+## ✅ Work Experience Collection (Collection Type) - DONE
+- [x] Created schema.json with all required fields
+  - jobTitle (Text) - Required, job position
+  - companyName (Text) - Required, company name
+  - companyLogo (Media - Single) - Company logo image
+  - startDate (Date) - Required, start date
+  - endDate (Date) - End date (null if current job)
+  - isCurrentJob (Boolean) - Whether still working here
+  - descriptions (JSON) - Array of job descriptions
+  - order (Integer) - Display order
+- [x] Created controller (work-experience.ts)
+- [x] Created routes (work-experience.ts)
+- [x] Created services (work-experience.ts)
+
+### API Endpoints:
+- GET `/api/work-experiences` - Get all work experiences
+- GET `/api/work-experiences/:id` - Get single work experience
+- POST `/api/work-experiences` - Create work experience
+- PUT `/api/work-experiences/:id` - Update work experience
+- DELETE `/api/work-experiences/:id` - Delete work experience
+
+### Example Data Structure:
+```json
+{
+  "jobTitle": "Frontend Developer",
+  "companyName": "Ako Media Asia",
+  "companyLogo": "<media_id>",
+  "startDate": "2024-10-01",
+  "endDate": null,
+  "isCurrentJob": true,
+  "descriptions": [
+    "Developing and maintaining web applications",
+    "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
+    "Implementing responsive design and ensuring cross-browser compatibility.",
+    "Participating in code reviews and providing constructive feedback to other developers.",
+    "Implementing unit and integration tests using Jest to ensure code quality and reliability.",
+    "Implementing gzip compression and lazy loading to optimize web application performance and reduce load times."
+  ],
+  "order": 1
+}
+```
