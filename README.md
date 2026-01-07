@@ -34,6 +34,27 @@ yarn build
 
 ## ⚙️ Deployment
 
+### Deploy ke Render
+
+Project ini sudah dikonfigurasi untuk deployment ke Render menggunakan `render.yaml`.
+
+**Langkah cepat:**
+
+1. Push code ke Git repository
+2. Login ke [Render Dashboard](https://dashboard.render.com)
+3. Klik **"New +"** → **"Blueprint"**
+4. Pilih repository Anda
+5. Klik **"Apply"**
+
+**Dokumentasi lengkap:** Lihat [DEPLOYMENT.md](./DEPLOYMENT.md) untuk panduan detail.
+
+**Generate Secret Keys:**
+```bash
+node generate-secrets.js
+```
+
+### Deploy ke Platform Lain
+
 Strapi gives you many possible deployment options for your project including [Strapi Cloud](https://cloud.strapi.io). Browse the [deployment section of the documentation](https://docs.strapi.io/dev-docs/deployment) to find the best solution for your use case.
 
 ```
